@@ -1,25 +1,18 @@
-import logo from './logo.svg';
+import React from 'react';
 import './App.css';
+import Navbar from './components/Navbar';
+import Searchbar from './components/Searchbar';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Prueba react app
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+export default function App (){
+  return(
+    //primero el navbar//
+    <div>
+      <Navbar/>
+      <div className="App">
+        <Searchbar/>
+      </div>
     </div>
-  );
-}
 
-export default App;
+
+  );
+} ;
