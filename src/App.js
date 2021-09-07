@@ -16,6 +16,7 @@ export default function App (){
   //para obtener los datos de la api con el useEffect
   const fetchPokemons = async()=>{
     try{
+      //promises...
       const data = await getPokemons()
       console.log(data.results)
       const promises = data.results.map(async(pokemon)=>{
