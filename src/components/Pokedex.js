@@ -7,7 +7,7 @@ const Pokedex =(props)=>{
     // const pokemons = props.pokemons;
     // const page  = props.page;
     // const setPage = props.setPage;
-    const {pokemons,page,setPage,total} = props;
+    const {pokemons,page,setPage,total,loading} = props;
     ///funcion para determinar ultima paginacion
     const lastPage =()=>{
         const nextPage = Math.max(page -1,0);
@@ -29,17 +29,21 @@ const Pokedex =(props)=>{
                 <h1>Pokedex</h1>
                 <Pagination
                 page={page +1}
-                totalPages={111}
+                totalPages={total}
                 onLeftClick={lastPage}
                 onRightClick ={nextPage}
                 />
             </div>
+            {loading ?
+            <div>Cargando Pokemones..</div>
+            :
             <div className="pokedex-grid">
                 {pokemons.map((pokemon,idx)=>{
                     return(
                         <Pokemon pokemon = {pokemon} key ={pokemon.name}/>                  )
                 })}
             </div>
+            }
         </div>
     )
 

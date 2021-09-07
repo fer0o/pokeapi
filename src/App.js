@@ -14,13 +14,15 @@ export default function App (){
   const [pokemons, setPokemons] = useState([])
   //---> paginacion para pokemons///
 
-const [page, setPage] = useState(1);
-const [total, setTotal] = useState();
+const [page, setPage] = useState(0);
+const [total, setTotal] = useState(0);
 const [loading,setLoading] = useState(true);
 
   //para obtener los datos de la api con el useEffect
   const fetchPokemons = async()=>{
+
     try{
+      setLoading(true)
       //promises...
       const data = await getPokemons(25, 25 * page)
       //console.log(data.results)
@@ -30,6 +32,7 @@ const [loading,setLoading] = useState(true);
       const results = await Promise.all(promises)
       setPokemons(results)
       setLoading(false)
+      setTotal(Math.ceil(data.count /25) )
 
     }
     catch(err){
@@ -53,15 +56,12 @@ const [loading,setLoading] = useState(true);
       <Navbar/>
       <div className="App">
         <Searchbar/>
-        {
-          loading ? (
-            <div>Cargando Pokemones..</div>
-          ) :(
         
         <Pokedex pokemons={pokemons}
+        loading={loading}
         page = {page}
-        setPage = {setPage}/>
-          )}
+        setPage = {setPage}
+        total = {total}/>
       </div>
     </div>
 

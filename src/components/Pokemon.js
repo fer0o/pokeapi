@@ -5,6 +5,12 @@ import React from "react";
 const Pokemon =(props)=>{
     const {pokemon} = props;
     //console.log(pokemon)
+
+    //corazones
+    const redHeart ="&#10084;&#65039;"
+    const blackHeart =" 🖤 "
+
+
     return(
         <div className ="pokemon-card">
             <div className="pokemon-img-container">
@@ -21,7 +27,10 @@ const Pokemon =(props)=>{
                             return <div key={idx} className="pokemon-type-text"> {type.type.name} </div>
                         })}
                     </div>
-                    <div className="favorite"> &#10084;&#65039; </div>
+                    <button>
+                        <div className="favorite"> {blackHeart} </div>
+                    </button>
+                    
                 </div>
             </div>
         </div>
