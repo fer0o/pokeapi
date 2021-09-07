@@ -4,7 +4,7 @@ import React from "react";
 //pure component solo es informacion que viene de los props
 const Pokemon =(props)=>{
     const {pokemon} = props;
-    console.log(pokemon)
+    //console.log(pokemon)
     return(
         <div className ="pokemon-card">
             <div className="pokemon-img-container">
@@ -21,7 +21,7 @@ const Pokemon =(props)=>{
                             return <div key={idx} className="pokemon-type-text"> {type.type.name} </div>
                         })}
                     </div>
-                    <div className="favorite"> 💗 </div>
+                    <div className="favorite"> &#10084;&#65039; </div>
                 </div>
             </div>
         </div>

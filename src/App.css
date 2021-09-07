@@ -54,7 +54,7 @@ nav{
 .pokedex-grid{
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  grid-gap: 10px;
+  grid-gap: 18px;
   padding: 0px 10px;
 }
 .pokemon-card{
@@ -105,6 +105,11 @@ nav{
   text-transform: capitalize;
 }
 
+.pagination{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
 
 .App {
   font-family: sans-serif;
