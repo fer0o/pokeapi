@@ -1,14 +1,25 @@
-import React from "react";
+import React, { useContext } from "react";
+import FavoriteContext from "../context/favoritesContext";
 
 //creacion de un DOM component o pure component -> No tiene estado
 //pure component solo es informacion que viene de los props
 const Pokemon =(props)=>{
     const {pokemon} = props;
     //console.log(pokemon)
+    //------> uso de; useContex para poder hacer el cambio en el corazon de negro a rojo
+    const {favoritePokemons,updateFavoritePokemons} = useContext(FavoriteContext)
 
     //corazones
-    const redHeart ="&#10084;&#65039;"
+    const redHeart = "💗" 
     const blackHeart =" 🖤 "
+    const heart = favoritePokemons.includes(pokemon.name)? redHeart : blackHeart
+
+    //evento favoritepokemon onClick
+    const clickHeart = (event)=>{
+        event.preventDefault();
+        updateFavoritePokemons(pokemon.name)
+
+    }
 
 
     return(
@@ -27,8 +38,8 @@ const Pokemon =(props)=>{
                             return <div key={idx} className="pokemon-type-text"> {type.type.name} </div>
                         })}
                     </div>
-                    <button>
-                        <div className="favorite"> {blackHeart} </div>
+                    <button onClick={clickHeart}>
+                        <div className="favorite"> {heart} </div>
                     </button>
                     
                 </div>

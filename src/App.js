@@ -3,7 +3,8 @@ import './App.css';
 import Navbar from './components/Navbar';
 import Searchbar from './components/Searchbar';
 import Pokedex from './components/Pokedex';
-import { getPokemonData, getPokemons } from './api/api';
+import { getPokemonData, getPokemons,searchPokemon } from './api/api';
+import { FavoriteProvider } from './context/favoritesContext';
 
 //parte de renderizar los pokemons de componente padre a hijo (pokedex) por medio de props
 const {useState,useEffect} = React;
@@ -17,6 +18,8 @@ export default function App (){
 const [page, setPage] = useState(0);
 const [total, setTotal] = useState(0);
 const [loading,setLoading] = useState(true);
+//nuevo state variable para el favorite pokemon. este state es para uso de context
+const [favorites,setFavorites] = useState([]);
 
   //para obtener los datos de la api con el useEffect
   const fetchPokemons = async()=>{
@@ -47,11 +50,27 @@ const [loading,setLoading] = useState(true);
   },[page])
   //array 0 dependencias
 
-
+  const updateFavoritePokemons =(name)=>{
+    //console.log(name)
+    const updated =[...favorites]
+    const isFavorite = favorites.indexOf(name);
+    if(isFavorite >=0){
+      updated.splice(isFavorite,1)
+    }
+    else{
+      updated.push(name)
+    }
+    setFavorites(updated)
+  }
 
 
   return(
-    //primero el navbar//
+    //en esta parte mandamos a llamar el useContext de favoritePokemos -> falta crear variable favoritePokemons
+    <FavoriteProvider value={{
+      favoritePokemons: favorites, updateFavoritePokemons
+    }}
+    >
+    {/* //primero el navbar// */}
     <div>
       <Navbar/>
       <div className="App">
@@ -64,6 +83,7 @@ const [loading,setLoading] = useState(true);
         total = {total}/>
       </div>
     </div>
+    </FavoriteProvider>
 
 
   );
