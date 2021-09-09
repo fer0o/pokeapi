@@ -4,17 +4,23 @@ const {useState} = React;
 
 
 
-const Searchbar = () =>{
+const Searchbar = (props) =>{
+    const {onSearch} = props; 
     const [search,setSearch] = useState(" ");
-    const [pokemon, setPokemon] = useState(); 
+    //const [pokemon, setPokemon] = useState();
+    
 
     const onChange = (event)=>{
         setSearch (event.target.value);
+        if(event.target.value.length ===0){
+            onSearch(null);
+        }
     };
 
-    const onClick = async (event)=>{
-        const data = await searchPokemon(search)
-        setPokemon(data);
+    const onClick = async (e)=>{
+        //const data = await searchPokemon(search)
+        //setPokemon(data);
+        onSearch(search)
     };
 
     return(
